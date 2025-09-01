@@ -94,7 +94,7 @@
     }
 
 
-    if (window.location.pathname === "/login") {
+    if (window.location.pathname === "/login" || window.location.pathname === "/login/") {
         const showLoginForm = document.getElementById('showLoginForm');
         const emailLoginForm = document.getElementById('emailLoginForm');
         const errors = document.getElementById('errors');
@@ -145,7 +145,7 @@
         });
     }
 
-    if (window.location.pathname === "/create_account") {
+    if (window.location.pathname === "/create_account" || window.location.pathname === "/create_account/") {
         const showCreateForm = document.getElementById("showCreateForm");
         const emailCreateForm = document.getElementById("emailCreateForm");
         const spotifyLogin = document.getElementById("spotifyLogin");
@@ -190,7 +190,7 @@
         });
     }
 
-    if (window.location.pathname === "/account") {
+    if (window.location.pathname === "/account" || window.location.pathname === "/account/") {
 
         const getUser = async () => {
             const { data: { user } } = await supabaseClient.auth.getUser()
