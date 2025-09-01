@@ -1,0 +1,138 @@
+---
+import MainLayout from "../layout/Layout.astro";
+---
+
+<MainLayout title="My Top Ten">
+    <link rel="stylesheet" href="//cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css">
+    
+    
+    <section class="py-5 header">
+        <div class="wrapper">
+            <h1>My Matches</h1>
+        </div>
+    </section>
+    <section class="wrapper py-5">
+
+            <div class="content">
+            
+
+                <div id="content-3">
+                    <p>You have no matched playlists at the moment</p>
+                    <div class="flex">
+                        <div class="card">
+                            <div class="img">
+                                <img src="https://htmlstream.com/preview/unify-v2.6/assets/img-temp/200x200/img3.jpg" alt="">
+                            </div>
+                            <div class="stats">
+                                <h2>50%</h2>
+                                <h4>My Best Playlist</h4>
+                                <ul style="list-style-type:none">
+                                    <li>Song 1</li>
+                                    <li>Song 2</li>
+                                </ul>
+                            </div>
+                            <div class="cta">
+                                <button class="btn btn-primary">View List</button>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="img">
+                                <img src="https://htmlstream.com/preview/unify-v2.6/assets/img-temp/200x200/img3.jpg" alt="">
+                            </div>
+                            <div class="stats">
+                                <h2>50%</h2>
+                                <h4>My Best Playlist</h4>
+                                <ul style="list-style-type:none">
+                                    <li>Song 1</li>
+                                    <li>Song 2</li>
+                                </ul>
+                            </div>
+                            <div class="cta">
+                                <button class="btn btn-primary">View List</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <style>
+        ul{padding: 0;}
+        ol li{
+            padding: 0.75rem;
+        }
+         input{
+            height:23px;
+            padding-left: 5px;
+            border: 1px solid var(--static11)
+        }
+        .img img{
+            width:96px;
+            height: 96px;
+            border-radius: 50%;
+        }
+        .item{
+            width:100px;
+            display:inline-block
+        }
+        .flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .pr-3{
+            padding-right: 3rem;
+        }
+        .py-1{
+            padding: 2rem 0;
+        }
+        .d-block{
+            display: block;
+        }
+        .w-200{
+            width: 200px;
+        }
+        .border-light{
+            border-bottom: 1px solid #ddd;
+        }
+        .txt-accent{
+            color: var(--accent);
+            cursor: pointer;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+        }
+        
+
+        @media (min-width: 768px) {
+            .d-md-inline-block {
+                display: inline-block !important;
+            }
+        }
+       
+      
+
+        @media screen and (max-width: 480px) {
+            label {
+                padding: 15px 10px;
+                display: block;
+            }
+        }
+
+        @keyframes inUp {
+            0% {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            90% {
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</MainLayout>

@@ -1,0 +1,70 @@
+---
+
+---
+
+<footer>
+    <div class="py-5 flex wrap">
+        <div id="info">
+            <h3>My Top Ten</h3>
+            <p>Create your top 10 favorite songs of all time list and share it with the world.</p>
+        </div>
+        <div id="nav">
+            <ul>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+            </ul>
+        </div>
+        <div id="terms">
+            <ul>
+                <li><a href="/privacy/">Privacy</a></li>
+                <li><a href="/terms/">Terms</a></li>
+            </ul>
+        </div>    
+    </div>
+    <div class="center py-3">
+        <small>copyright 2025</small>
+    </div>
+</footer>
+
+<style>
+    footer{
+        background: var(--accent);
+        color: var(--background);
+    }
+    h3{
+        font-family: "Special Elite";
+        font-size: 24px;
+    }
+    li{
+        list-style: none;
+        padding: 0.5rem 0;
+    }
+    a{
+        color:var(--background);
+        text-decoration: none;
+    }
+    .center{
+        text-align: center;
+        background-color: rgb(0,0,0,0.1);
+    }
+    .py-3{
+        padding: 0.5rem 0;
+    }
+    .wrap{
+        max-width:980px;
+        margin: 0 auto;
+    }
+    .flex{
+        display: grid;
+        gap: 1em;
+        grid-template-columns: repeat(auto-fit, minmax(10em, 19em));
+    }
+    #info{
+        padding-left: 2em;
+    }
+    @media (max-width: 480px) {
+        ul {
+            margin: 0;
+        }
+    }
+</style>

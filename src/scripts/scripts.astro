@@ -1,0 +1,23 @@
+console.log(1);
+
+//* contact form validation *//
+
+
+
+
+//* login page *//
+
+const showForm = document.getElementById('showForm');
+const emailForm = document.getElementById('emailForm');
+
+
+showForm.addEventListener('click', () => {
+    if (emailForm.style.display === 'none') {
+        emailForm.style.display = 'block';
+        showForm.textContent = 'Log in with Spotify';
+    } else {
+        emailForm.style.display = 'none';
+        showForm.textContent = 'Log in with email';
+    }
+});
+

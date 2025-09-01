@@ -1,0 +1,183 @@
+---
+import MainLayout from "../layout/Layout.astro";
+---
+
+<MainLayout title="My Top Ten">
+    <link
+        rel="stylesheet"
+        href="//cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css"
+    />
+    <section class="py-5 header">
+        <div class="wrapper">
+            <h1>My Songs</h1>
+        </div>
+    </section>
+    <section class="wrapper py-5">
+        <div class="content">
+
+            <div class="py-5">
+                <button class="btn-light">Create a Playlist</button> <span class="mx-5">OR</span> <button class="btn-light">Import from Spotify</button>
+            </div>
+
+
+
+            <div id="noplaylist">
+                <input type="text" class="form-input" />
+                <button class="btn btn-primary">Add Playlist</button>
+            </div>
+            <div id="songs" style="display: none;">
+                <div class="d-flex">
+                    <h3>Camo Top 10</h3><span
+                        >1 <i class="fa-solid fa-thumbs-up txt-accent" title="likes"
+                        ></i></span
+                    >
+                </div>
+                <div class="text-right">
+                    <button class="btn btn-primary">Add Song</button>
+                </div>
+                <div>
+                    <table class="dataTable" id="myPlayList">
+                        <thead>
+                            <tr>
+                                <th>Song</th>
+                                <th>Artist</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Song 1</td>
+                                <td>Artist 1</td>
+                                <td class="text-right">
+                                    <i class="fa-solid fa-pen txt-accent"></i>
+                                    <i class="fa-solid fa-trash txt-accent"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Song 2</td>
+                                <td>Artist 2</td>
+                                <td class="text-right">
+                                    <i class="fa-solid fa-pen txt-accent"></i>
+                                    <i class="fa-solid fa-trash txt-accent"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Song 3</td>
+                                <td>Artist 3</td>
+                                <td class="text-right">
+                                    <i class="fa-solid fa-pen txt-accent"></i>
+                                    <i class="fa-solid fa-trash txt-accent"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="who-likes" class="py-1">
+                        <h3 class="py-5">These people like your playlist</h3>
+                        <div class="flex">
+                            <div class="playlist">
+                                <div>
+                                    <img
+                                        src="https://htmlstream.com/preview/unify-v2.6/assets/img-temp/200x200/img1.jpg"
+                                        title="Bob"
+                                    />
+                                </div>
+                            </div>
+                            <div class="playlist">
+                                <div>
+                                    <img
+                                        src="https://htmlstream.com/preview/unify-v2.6/assets/img-temp/200x200/img3.jpg"
+                                        title="Mary"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <style>
+            ul {
+                padding: 0;
+            }
+            ol li {
+                padding: 0.75rem;
+            }
+            input {
+                height: 23px;
+                padding-left: 5px;
+                border: 1px solid var(--static11);
+            }
+            .mx-5 {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            .img img {
+                width: 96px;
+                height: 96px;
+                border-radius: 50%;
+            }
+            .item {
+                width: 100px;
+                display: inline-block;
+            }
+            .flex {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .pr-3 {
+                padding-right: 3rem;
+            }
+            .py-1 {
+                padding: 2rem 0;
+            }
+            .d-block {
+                display: block;
+            }
+            .w-200 {
+                width: 200px;
+            }
+            .border-light {
+                border-bottom: 1px solid #ddd;
+            }
+            .txt-accent {
+                color: var(--accent);
+                cursor: pointer;
+            }
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 1rem;
+            }
+
+            @media (min-width: 768px) {
+                .d-md-inline-block {
+                    display: inline-block !important;
+                }
+            }
+
+            @media screen and (max-width: 480px) {
+                label {
+                    padding: 15px 10px;
+                    display: block;
+                }
+            }
+
+            @keyframes inUp {
+                0% {
+                    opacity: 0;
+                    transform: translateY(100px);
+                }
+                90% {
+                    transform: translateY(-10px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        </style>
+    </section>
+</MainLayout>

@@ -1,0 +1,22 @@
+
+<script is:inline>
+    const public_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndicWlseXRiemNyZHJjZHNuaXhvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU0ODU2MzEsImV4cCI6MjA3MTA2MTYzMX0.Bp54B1sCYz57p-mO5eB6wNn1GBmmkTgRPFxPHqQMFY8";
+    const url = "https://wbqilytbzcrdrcdsnixo.supabase.co";
+    const supabaseClient = supabase.createClient(url, public_key);
+    const loggedIn = document.querySelectorAll('.logged-in');
+    const isLoggedIn = async () => {
+        if (supabaseClient.auth.currentSession) {
+            loggedIn.forEach(el => el.style.display = 'block');
+        } else {
+            loggedIn.forEach(el => el.style.display = 'none');
+        }
+    }
+    isLoggedIn();
+
+
+
+
+
+
+
+</script>

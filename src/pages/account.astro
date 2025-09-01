@@ -1,0 +1,149 @@
+---
+import MainLayout from "../layout/Layout.astro";
+---
+
+<MainLayout title="My Top Ten">
+    <section class="py-5 header">
+        <div class="wrapper">
+            <h1>My Account</h1>
+        </div>
+    </section>
+    <section class="wrapper py-5">
+            <div class="content">
+                <div id="content-1">
+                    <form action="">
+                        <ul>
+                            <li class="d-flex py-1 border-light">
+                                <div class="pr-3">
+                                    <strong class="d-block d-md-inline-block w-200">Email</strong>
+                                    <span id="emailPlaceholder"></span>
+                                </div>
+                                <span>
+                                    <span class="badge" title="3 matched playlists">3</span>
+                                </span>
+                            </li>
+                            <li class="d-flex py-1 border-light">
+                                <div class="pr-3 ">
+                                    <strong class="d-block d-md-inline-block w-200">Display Name</strong>
+                                    <span id="displayName">djcamo</span>
+                                </div>
+                                <span>
+                                    <i class="fa-solid fa-pen txt-accent"></i>
+                                </span>
+                            </li>
+                            <li class="d-flex py-1 border-light">
+                                <div class="pr-3 ">
+                                    <strong class="d-block d-md-inline-block w-200">Password</strong>
+                                    <span>******</span>
+                                </div>
+                                <span>
+                                    <i class="fa-solid fa-pen txt-accent"></i>
+                                </span>
+                            </li>
+                            <li class="d-flex py-1 border-light">
+                                <div class="pr-3 ">
+                                    <strong class="d-block d-md-inline-block w-200">Country</strong>
+                                    <span>Australia</span>
+                                </div>
+                                <span>
+                                    <i class="fa-solid fa-pen txt-accent"></i>
+                                </span>
+                            </li>
+                            <li class="d-flex py-1 border-light">
+                                <div class="pr-3 ">
+                                    <strong class="d-block d-md-inline-block w-200">Avatar</strong>
+                                    <span>
+                                        <img class="avatar" id="avatar" src="" alt="">
+                                    </span>
+                                </div>
+                                <span>
+                                    <i class="fa-solid fa-pen txt-accent"></i>
+                                </span>
+                            </li>
+                        </ul>
+                        <button class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+    </section>
+
+    <style>
+        ul{padding: 0;}
+        ol li{
+            padding: 0.75rem;
+        }
+         input{
+            height:23px;
+            padding-left: 5px;
+            border: 1px solid var(--static11)
+        }
+        .img img{
+            width:96px;
+            height: 96px;
+            border-radius: 50%;
+        }
+        .item{
+            width:100px;
+            display:inline-block
+        }
+        .flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .pr-3{
+            padding-right: 3rem;
+        }
+        .py-1{
+            padding: 2rem 0;
+        }
+        .d-block{
+            display: block;
+        }
+        .w-200{
+            width: 200px;
+        }
+        .border-light{
+            border-bottom: 1px solid #ddd;
+        }
+        .txt-accent{
+            color: var(--accent);
+            cursor: pointer;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+        }
+
+
+        @media (min-width: 768px) {
+            .d-md-inline-block {
+                display: inline-block !important;
+            }
+        }
+
+
+
+        @media screen and (max-width: 480px) {
+            label {
+                padding: 15px 10px;
+                display: block;
+            }
+        }
+
+        @keyframes inUp {
+            0% {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            90% {
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</MainLayout>

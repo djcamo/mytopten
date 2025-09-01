@@ -1,16 +1,87 @@
 ---
-
+	import MainLayout from "../layout/LayoutHome.astro";
 ---
+	<MainLayout title="My Top Ten">
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+		<section class="wrapper">
+			<div class="grid">
+				<div class="item">
+					<div class="icon">
+						<i class="fa-solid fa-music fa-3x"></i>
+					</div>
+					<div>
+						<h3></h3>
+					</div>
+					<div>Songs</div>
+					<div class="line"></div>
+				</div>
+				<div class="item">
+					<div class="icon">
+						<i class="fa-solid fa-user-music fa-3x"></i>
+					</div>
+					<div>
+						<h3 id="number_artists"></h3>
+					</div>
+					<div>Artists</div>
+					<div class="line"></div>
+				</div>
+				<div class="item">
+					<div class="icon">
+						<i class="fa-solid fa-list-music fa-3x"></i>
+					</div>
+					<div>
+						<h3 id="number_playlists"></h3>
+					</div>
+					<div>Playlists</div>
+					<div class="line"></div>
+				</div>
+
+			</div>
+		</section>
+		<section class="bg-accent full-width">
+			<div class="wrapper">
+				<h1>How It Works</h1>
+					<p><i class="fa-solid fa-1"></i>. Create an account.</p>
+					<p><i class="fa-solid fa-2"></i>. Create a list of your top 10 songs</p>
+					<p><i class="fa-solid fa-3"></i>. Share your list with the world</p>
+			</div>
+		</section>
+		<section class="wrapper">
+			<h1>Latest Legends</h1>
+			<div class="grid" id="latest-playlists">
+			</div>
+		</section>
+		<style>
+			.grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+				gap: 1rem;
+			}
+			.item {
+				background: var(--primary);
+				background: linear-gradient(0deg,var(--primary) 0%, var(--secondary) 100%);
+				padding: 1rem;
+				/* border-radius: 0.5rem; */
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+				/* text-align: center; */
+			}
+			.item:hover {
+				transform: scale(1.05);
+				transition: all 0.3s ease-in-out;
+			}
+			.icon{
+				padding-bottom: 2rem;
+				text-align: right;
+			}
+			.line{
+				border-bottom: 2px solid var(--text);
+				margin: 1rem 0;
+			}
+
+			.bg-accent{
+				background-color: var(--static11);
+				color: var(--text);
+			}
+
+		</style>
+	</MainLayout>

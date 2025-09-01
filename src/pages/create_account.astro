@@ -1,0 +1,106 @@
+---
+	import MainLayout from "../layout/Layout.astro";
+---
+	<MainLayout title="My Top Ten">
+		<section class="text-center flex py-5">
+			<div>
+				<h1>Sign up to add your top ten songs</h1>
+				<button class="btn-light" type="button" id="spotifyLogin">Sign up with Spotify</button>
+				<p class="py-3 link" id="showCreateForm">Sign up with email</p>
+				<p>Already have an account?</p>
+				<p>
+					<a href="/login">Log in</a>
+				</p>
+			</div>
+
+			<form action="" class="card" style="display:none" id="emailCreateForm">
+				<div class="form-element">
+					<label for="email">Email</label>
+					<input type="email" name="email" id="email">
+				</div>
+				<div class="form-element">
+					<label for="password">Password</label>
+					<input type="password" name="password" id="password">
+				</div>
+				<div class="form-element">
+					<label for="passwordConfirm">Confirm Password</label>
+					<input type="password" name="passwordConfirm" id="passwordConfirm">
+				</div>
+				<div id="warnings">
+					<p id="errors" class="text-danger"></p>
+				</div>
+				<button class="btn btn-primary" type="submit">Create Account</button>
+			</form>
+		</section>
+		<style>
+			label{
+				display: block;
+				margin-bottom: 0.3rem;
+			}
+			form{
+				width: 360px;
+				border: 1px solid #999;
+				background-color: #ffF;
+				padding: 1rem;
+				border-radius: 0.3rem;
+				box-shadow: 4px 4px 7px 0 rgba(0, 0, 0, 0.3);
+			}
+			input{
+				padding: 0.5rem;
+				border: 1px solid var(--text);
+				border-radius: 0.3rem;
+				width: 340px;
+			}
+			.btn-primary{
+				padding: 1rem;
+				border: none;
+				border-radius: 0.3rem;
+				background-color: var(--primary);
+				color: var(--background);
+				cursor: pointer;
+				font-size: 1rem;
+				text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2);
+			}
+			.btn-primary:hover{
+				background-color: var(--primary45);
+				transition: all 0.5s ease-in-out;
+			}
+
+			.card{
+				margin: 0 auto;
+			}
+			.wrapper{
+				max-width:980px;
+				margin: 0 auto;
+			}
+			.d-flex{
+				display:flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			.text-center{
+				text-align: center;
+			}
+			.flex{
+				display:flex;
+				flex-direction: column;
+    			align-items: center;
+			}
+			.py-5{
+				padding-block: 3rem;
+			}
+			.py-3{
+				padding-block: 1.5rem;
+			}
+			.form-element{
+				margin-block: 1rem;
+				text-align: left;
+			}
+			.link, a{
+				text-decoration: none;
+				cursor: pointer;
+				color: var(--accent);
+			}
+		</style>
+	</MainLayout>
+

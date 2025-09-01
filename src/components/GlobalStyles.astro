@@ -1,0 +1,160 @@
+
+<style is:global>
+    /* element styles */
+
+    :root{
+        --primary: hsl(26, 100%, 50%);
+        --primary45: hsl(26, 100%, 45%);
+        --secondary:  hsl(45, 100%, 58%);
+        --secondary30: hsl(45, 100%, 45%, 30%);
+        --accent:  hsl(173, 100%, 21%);
+        --background:  hsl(210, 17%, 98%);
+        --text:  hsl(11, 26%, 24%);
+        --static11: rgba(0, 0, 0, 0.03);
+    }
+    body{
+        font-family: "Josefin Sans",sans-serif;
+        color: var(--text);
+        background: var(--background);
+        font-size: 1rem;
+    }
+    h1{
+        font-family: "Special Elite";
+        font-size: 2rem;
+    }
+    h2,h3,h4{
+        margin-bottom:0;
+        margin-top:0.5rem
+    }
+    section{
+        padding: 2rem 0;
+    }
+    a{
+        color: var(--accent);
+        text-decoration: none;
+    }
+
+    /* class styles */
+
+    .full-width{'
+        max-width:100%;
+    }
+    .wrapper{
+        max-width:980px;
+        margin: 0 auto;
+    }
+    .d-flex{
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .d-inline{
+        display: inline-block;
+    }
+    .text-center{
+        text-align: center;
+    }
+    .text-danger{
+        color: red;
+    }
+    .header{
+        background-color: var(--secondary30);
+        color: var(--text);
+        padding: 1rem;
+    }
+    .py-5{
+        padding: 2rem 0;
+    }
+    .avatar {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        border: 2px solid var(--text);
+    }
+    .btn{
+        font-family: "Josefin Sans",sans-serif;
+        padding: 0.75rem 1rem;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+    .btn-primary{
+        background-color: var(--primary);
+
+        color: white;
+    }
+    .btn-light{
+
+    }
+    .text-right{
+        float: right;
+    }
+    .badge {
+        background-color: var(--primary);
+        color: white;
+        padding: 4px 8px;
+        text-align: center;
+        border-radius: 5px;
+    }
+    .card{
+        border: 1px solid var(--static11);
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 10px;
+        box-shadow: 2px 2px 2px #ccc;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+        gap:15px
+    }
+    .playlist div{
+        text-align: center;
+    }
+    .playlist img{
+        width:4rem;
+        border-radius: 50%;
+    }
+    .playlist img:hover{
+        transform: scale(1.1);
+        transition: all 0.3s ease-in-out;
+    }
+    .form-input{
+        padding: 1.3rem 0.5rem;
+        border: 1px solid var(--static11);
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    .form-input:focus{
+        outline: none;
+        border-color: var(--primary);
+    }
+    .content {
+        min-height:50vh;
+    }
+    .btn-light{
+				padding: 0.75rem 1rem;
+				border: 1px solid var(--text);
+				border-radius: 0.3rem;
+				background-color: var(--background);
+				color: var(--text);
+				cursor: pointer;
+				font-size: 1rem;
+				text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+			}
+			.btn-light:hover{
+				background-color: var(--text);
+				color: var(--background);
+				transition: all 0.5s ease-in-out;
+			}
+
+    @media (max-width: 768px) {
+        .card {
+            width:90%;
+        }
+        .content {
+            min-height:30vh;
+        }
+    }
+
+</style>

@@ -1,0 +1,89 @@
+---
+	import MainLayout from "../layout/Layout.astro";
+---
+	<MainLayout title="My Top Ten">
+
+		<section class="py-5 header">
+			<div class="wrapper">
+				<h1>Contact Me</h1>
+			</div>
+		</section>
+		<section class="wrapper py-5">
+			<h2>Contact Me</h2>
+			<p>Feel free to send me any thing not right with the site, or any enhancements you would like to see.</p>
+			<p>Just don't expect an immediate response. Remember I do this in my spare time, the little I have of it. Thanks.</p>
+			<form action="" class="card" id="contact-form">
+				<div class="form-element">
+					<label for="fullName">Name</label>
+					<input type="text" name="fullName" id="fullName">
+				</div>
+				<div class="form-element">
+					<label for="email">Email</label>
+					<input type="email" name="email" id="email" autocomplete="off">
+				</div>
+				<div class="form-element">
+					<label for="message">Message</label>
+					<textarea  name="message" id="message"></textarea>
+				</div>
+				<button class="btn btn-primary" type="submit">Send Enquiry</button>
+			</form>
+		</section>
+		<style>
+			label{
+				display: block;
+				margin-bottom: 0.3rem;
+			}
+			form{
+				width: 400px;
+				padding: 1rem;
+			}
+			input, textarea{
+				padding: 0.5rem;
+				border: 1px solid var(--text);
+				/* border-radius: 0.3rem;	 */
+				width: 380px;
+			}
+			textarea{
+				height:5rem
+			}
+			.form-element{
+				margin-block: 1rem;
+				text-align: left;
+			}
+			.card{
+				background-color: #fff;
+				gap:0
+			}
+			.danger{
+				border-color: red;
+			}
+		</style>
+		<script is:inline>
+			document.getElementById("contact-form").addEventListener("submit", function(e){
+				e.preventDefault();
+				
+				const fullName = document.getElementById("contact-form").fullName;
+				if(fullName.value === ""){
+					fullName.setAttribute("class", "danger");
+					return;
+				}else{
+					fullName.setAttribute("class", "");
+				}
+				const email = document.getElementById("contact-form").email;
+				if(email.value === ""){
+					email.setAttribute("class", "danger");
+					return;
+				}else{
+					email.setAttribute("class", "");
+				}
+
+				const formData = new FormData(this);
+				
+
+
+				console.log(formData);
+
+				this.reset();
+			});
+		</script>
+	</MainLayout>
