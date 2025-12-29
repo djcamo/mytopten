@@ -1,7 +1,6 @@
+
 (function() {
-    const public_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndicWlseXRiemNyZHJjZHNuaXhvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU0ODU2MzEsImV4cCI6MjA3MTA2MTYzMX0.Bp54B1sCYz57p-mO5eB6wNn1GBmmkTgRPFxPHqQMFY8";
-    const url = "https://wbqilytbzcrdrcdsnixo.supabase.co";
-    const supabaseClient = supabase.createClient(url, public_key);
+    // The supabaseClient is initialized globally in GlobalScripts.astro.
     const loggedIn = document.querySelectorAll('.logged-in');
 
     const signOut = document.getElementById('signOut');
@@ -193,14 +192,62 @@
     if (window.location.pathname === "/account" || window.location.pathname === "/account/") {
 
         const getUser = async () => {
-            const { data: { user } } = await supabaseClient.auth.getUser()
-            console.log(user);
-            document.getElementById('emailPlaceholder').innerHTML = user.email;
-            document.getElementById('displayName').innerHTML = user.user_metadata.full_name;
-            document.getElementById('avatar').src = user.user_metadata.avatar_url;
+            const { data: { user } } = await supabaseClient.auth.getUser();
+            return user;
         }
 
-        getUser();
+        getUser()
+        .then(data => {
+            // console.log(data);
+            const id = data.id;
+            const email = data.email;
+            let displayName = '';
+            let avatar = '';
+            //* get meta data
+            if(data.app_metadata.provider) {
+                avatar = data.user_metadata.avatar_url;
+                displayName = data.user_metadata.full_name;
+                console.log(id,email,avatar,displayName);
+            }
+            //todo check if user exists in profiles table
+            supabaseClient
+            .from('profiles')
+            .select('*')
+            .eq('id', id)
+            .then(({ data, error }) => {
+                if (error) {
+                    console.error('Error fetching songs:');
+                } else {
+                    if (data.length !== 0) {
+                        console.log(data);
+                    } else {
+                        supabaseClient
+                        .from('profiles')
+                        .insert([
+                            { id: id, username: displayName, avatar_url: avatar }
+                        ])
+                        .select()
+                        .then(({ data, error }) => {
+                            if (error) {
+                                console.error('Error');
+                            } else {
+                                console.log(data);
+                            }
+                        });
+                    }
+
+                }
+            });
+
+
+            //todo if in profile table, update profile with meta data
+
+
+            //* display user data
+            document.getElementById('emailPlaceholder').innerHTML = email;
+            document.getElementById('displayName').innerHTML = displayName;
+            document.getElementById('avatar').src = avatar;
+        });
 
     }
 

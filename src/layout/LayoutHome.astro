@@ -9,7 +9,6 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/HeaderHome.astro';
 import GlobalStyles from '../components/GlobalStyles.astro';
 import GlobalScripts from '../components/GlobalScripts.astro';
-
 ---
 
 <!doctype html>
@@ -28,6 +27,7 @@ import GlobalScripts from '../components/GlobalScripts.astro';
         <link rel="stylesheet" href="/css/all.min.css"  />
         <script is:inline src="/scripts/all.min.js"></script>
         <script is:inline src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <GlobalScripts/>
         <GlobalStyles/>
     </head>
     <body>
