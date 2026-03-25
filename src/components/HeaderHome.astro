@@ -9,7 +9,7 @@ import Nav from "../components/Navigation.astro";
             <h1>Your  Life  In  10  Songs</h1>
         </div>
         <div>
-            <a>Create Your Top 10</a>
+            <a href="/create_account">Create Your Top 10</a>
         </div>
     </div>
 </header>
@@ -29,18 +29,34 @@ import Nav from "../components/Navigation.astro";
         padding-bottom: 1rem;
         color: var(--background);
     }
-    a{
-        padding: 1rem;
+    a {
+        padding: 1rem 1.25rem;
         font-size: 1.5rem;
-        background-color: var(--primary);
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary45) 100%);
         color: #fff;
-        border-radius: 0.35rem;
-        text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.7);
+        border-radius: 0.5rem;
+        text-shadow: 1px 1px 0.5px rgba(0, 0, 0, 0.3);
         cursor: pointer;
+        border: none;
+        display: inline-block;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 12px rgba(255, 111, 0, 0.2);
+        font-weight: 500;
+        letter-spacing: 0.5px;
     }
-    a:hover{
-        background-color: var(--primary45);
-        transition: all 0.5s ease-in-out;
+    a:hover {
+        background: linear-gradient(135deg, var(--primary45) 0%, var(--primary) 100%);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(255, 111, 0, 0.35);
+    }
+    a:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+    }
+    a:active {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(255, 111, 0, 0.25);
     }
     .px-3 {
         padding: 0 2rem;

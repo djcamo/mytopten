@@ -1,15 +1,23 @@
+---
+const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL || '';
+const SUPABASE_KEY = import.meta.env.PUBLIC_SUPABASE_KEY || '';
 
-<script is:inline>
-    const public_key = env.PUBLIC_SUPABASE_KEY;
-    const url = env.PUBLIC_SUPABASE_URL;
-    const supabaseClient = supabase.createClient(url, public_key);
-    const loggedIn = document.querySelectorAll('.logged-in');
-    const isLoggedIn = async () => {
-        if (supabaseClient.auth.currentSession) {
-            loggedIn.forEach(el => el.style.display = 'block');
-        } else {
-            loggedIn.forEach(el => el.style.display = 'none');
-        }
+const inlineScript = `
+  // Make Supabase client available globally so other scripts can use it.
+  window.supabaseClient = supabase.createClient(${JSON.stringify(SUPABASE_URL)}, ${JSON.stringify(SUPABASE_KEY)});
+
+  window.loggedIn = document.querySelectorAll('.logged-in');
+
+  const isLoggedIn = async () => {
+    if (window.supabaseClient.auth.currentSession) {
+      window.loggedIn.forEach(el => el.style.display = 'block');
+    } else {
+      window.loggedIn.forEach(el => el.style.display = 'none');
     }
-    isLoggedIn();
-</script>
+  };
+
+  isLoggedIn();
+`;
+---
+
+<script is:inline set:html={inlineScript}></script>

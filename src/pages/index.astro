@@ -1,45 +1,18 @@
 ---
 	import MainLayout from "../layout/LayoutHome.astro";
+	import FeatureCard from "../components/FeatureCard.astro";
 ---
 	<MainLayout title="My Top Ten">
 
 		<section class="wrapper">
 			<div class="grid">
-				<div class="item">
-					<div class="icon">
-						<i class="fa-solid fa-music fa-3x"></i>
-					</div>
-					<div>
-						<h3></h3>
-					</div>
-					<div>Songs</div>
-					<div class="line"></div>
-				</div>
-				<div class="item">
-					<div class="icon">
-						<i class="fa-solid fa-user-music fa-3x"></i>
-					</div>
-					<div>
-						<h3 id="number_artists"></h3>
-					</div>
-					<div>Artists</div>
-					<div class="line"></div>
-				</div>
-				<div class="item">
-					<div class="icon">
-						<i class="fa-solid fa-list-music fa-3x"></i>
-					</div>
-					<div>
-						<h3 id="number_playlists"></h3>
-					</div>
-					<div>Playlists</div>
-					<div class="line"></div>
-				</div>
-
+				<FeatureCard icon="fa-solid fa-music fa-3x" label="Songs" id="number_songs" />
+				<FeatureCard icon="fa-solid fa-user-music fa-3x" label="Artists" id="number_artists" />
+				<FeatureCard icon="fa-solid fa-list-music fa-3x" label="Playlists" id="number_playlists" />
 			</div>
 		</section>
 		<section class="bg-accent full-width">
-			<div class="wrapper">
+			<div class="wrapper">1
 				<h1>How It Works</h1>
 					<p><i class="fa-solid fa-1"></i>. Create an account.</p>
 					<p><i class="fa-solid fa-2"></i>. Create a list of your top 10 songs</p>
@@ -57,26 +30,6 @@
 				grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 				gap: 1rem;
 			}
-			.item {
-				background: var(--primary);
-				background: linear-gradient(0deg,var(--primary) 0%, var(--secondary) 100%);
-				padding: 1rem;
-				box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-				transition: all 0.3s ease ;
-			}
-			.item:hover {
-				transform: scale(1.05);
-				box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-			}
-			.icon{
-				padding-bottom: 2rem;
-				text-align: right;
-			}
-			.line{
-				border-bottom: 2px solid var(--text);
-				margin: 1rem 0;
-			}
-
 			.bg-accent{
 				background-color: var(--static11);
 				color: var(--text);
