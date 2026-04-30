@@ -303,8 +303,8 @@
         const songsTableBody = document.getElementById('songsTableBody');
 
         const loadPlaylists = async () => {
-            const user = await requireLogin();
-            if (!user) return;
+            // const user = await requireLogin();
+            // if (!user) return;
             const { data, error } = await supabaseClient
                 .from('playlists')
                 .select('*')
@@ -488,7 +488,8 @@
         });
 
         importSpotifyBtn.addEventListener('click', () => {
-            alert('Spotify import not implemented yet.');
+            // alert('Spotify import not implemented yet.');
+                openSpotifyModal();
         });
 
         deletePlaylistBtn.addEventListener('click', () => {
@@ -512,6 +513,83 @@
         });
 
         loadPlaylists().catch(console.error);
+
+
+        const openSpotifyModal = async () => {
+         const spotifyModal = document.getElementById('spotifyModal');
+         const spotifyPlaylistList = document.getElementById('spotifyPlaylistList');
+         const spotifyLoading = document.getElementById('spotifyLoading');
+         const spotifyConnect = document.getElementById('spotifyConnect');
+
+         spotifyModal.style.display = 'flex';
+        spotifyPlaylistList.innerHTML = '';
+        spotifyLoading.style.display = 'block';
+        spotifyConnect.style.display = 'none';
+
+        const { data } = await supabaseClient.auth.getSession();
+        const token = data.session?.provider_token;
+
+        if (!token) {
+            spotifyLoading.style.display = 'none';
+            spotifyConnect.style.display = 'block';
+            return;
+        }
+
+        try {
+            const response = await fetch('https://api.spotify.com/v1/me/playlists', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            const result = await response.json();
+
+            spotifyLoading.style.display = 'none';
+            if (result.items) {
+                result.items.forEach(pl => {
+                    const div = document.createElement('div');
+                    div.className = 'spotify-item';
+                    const img = pl.images?.[0]?.url || '/images/default-playlist.png';
+                    div.innerHTML = `<img src="${img}"><div>${pl.name}</div>`;
+                    div.onclick = () => importSpotifyPlaylist(pl.id, pl.name, token);
+                    spotifyPlaylistList.appendChild(div);
+                });
+            }
+        } catch (err) {
+            console.error('Spotify fetch error', err);
+            alert('Failed to load Spotify playlists.');
+        }
+    };
+
+    const importSpotifyPlaylist = async (id, name, token) => {
+        if (!confirm(`Import "${name}"? This will create a new Top 10 list.`)) return;
+
+        try {
+            const response = await fetch(`https://api.spotify.com/v1/playlists/${id}/tracks`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            const result = await response.json();
+
+            // 1. Create Playlist in DB
+            const newPl = await createPlaylist(name);
+            if (!newPl) return;
+
+            // 2. Map & Insert Songs (Limit to first 10 for Top 10 app)
+            const songs = result.items.slice(0, 10).map(item => ({
+                playlist_id: newPl.id,
+                title: item.track.name,
+                artist: item.track.artists.map(a => a.name).join(', ')
+            }));
+
+            await supabaseClient.from('songs').insert(songs);
+
+            document.getElementById('spotifyModal').style.display = 'none';
+            await loadPlaylists();
+            alert('Playlist imported successfully!');
+        } catch (err) {
+            console.error('Import error', err);
+            alert('Failed to import playlist.');
+        }
+    };
+
+
     }
 
 })();
