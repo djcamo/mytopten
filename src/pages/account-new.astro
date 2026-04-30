@@ -1,0 +1,377 @@
+---
+import MainLayout from "../layout/Layout.astro";
+---
+
+<MainLayout title="My Account - My Top Ten">
+    <!-- Version 1: Profile Header Card -->
+    <section class="account-hero">
+        <div class="wrapper">
+            <div class="hero-content">
+                <div class="avatar-container">
+                    <img class="avatar-large" id="avatar" src="/images/avatars/dc_paint.jpg" alt="Profile Picture">
+                    <div class="avatar-overlay">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+                </div>
+                <div class="hero-text">
+                    <h1 id="displayName" class="loading-shimmer">Loading...</h1>
+                    <p class="member-since">Member since March 2024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="wrapper py-5">
+        <!-- Activity Summary Tiles -->
+        <div class="stats-grid mb-5">
+            <div class="stat-card">
+                <i class="fa-solid fa-list-ul"></i>
+                <div class="stat-info">
+                    <span class="stat-value" id="number_playlists">0</span>
+                    <span class="stat-label">Playlists</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-music"></i>
+                <div class="stat-info">
+                    <span class="stat-value" id="number_songs">0</span>
+                    <span class="stat-label">Songs</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-fire"></i>
+                <div class="stat-info">
+                    <span class="stat-value">0</span>
+                    <span class="stat-label">Matches</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="account-grid">
+            <!-- Main Content Column -->
+            <div class="main-column">
+                <div class="settings-card">
+                    <div class="card-header">
+                        <h3>Public Profile</h3>
+                        <button class="btn-text edit-toggle">Edit All</button>
+                    </div>
+                    <form class="settings-form">
+                        <div class="form-group">
+                            <label>Display Name</label>
+                            <div class="input-wrapper">
+                                <input type="text" value="djcamo" placeholder="Enter display name">
+                                <i class="fa-solid fa-pen"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Bio <span class="char-count">0/160</span></label>
+                            <div class="input-wrapper">
+                                <textarea placeholder="Tell us about your music taste...">music fan</textarea>
+                                <i class="fa-solid fa-pen"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Country</label>
+                            <div class="input-wrapper">
+                                <select>
+                                    <option>Australia</option>
+                                    <option>United States</option>
+                                    <option>United Kingdom</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary mt-3">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sidebar Column -->
+            <div class="sidebar-column">
+                <div class="settings-card spotify-card">
+                    <h3>Connections</h3>
+                    <div class="connection-item">
+                        <div class="connection-info">
+                            <i class="fa-brands fa-spotify spotify-icon"></i>
+                            <div>
+                                <strong>Spotify</strong>
+                                <p class="status-connected">Connected</p>
+                            </div>
+                        </div>
+                        <button class="btn-sm btn-light">Disconnect</button>
+                    </div>
+                </div>
+
+                <div class="settings-card">
+                    <h3>Account Security</h3>
+                    <div class="info-row">
+                        <label>Email</label>
+                        <span id="emailPlaceholder" class="text-muted">loading...</span>
+                    </div>
+                    <hr>
+                    <a href="#" class="txt-accent">Change Password</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style is:global>
+        /* CSS Variables duplication for safety if GlobalStyles fails to load early */
+        :root {
+            --primary: hsl(26, 100%, 50%);
+            --accent: hsl(173, 100%, 21%);
+            --static11: rgba(0, 0, 0, 0.03);
+            --secondary30: hsl(45, 100%, 45%, 30%);
+            --text: hsl(11, 26%, 24%);
+        }
+
+        /* Hero Section Styling */
+        .account-hero {
+            background: linear-gradient(135deg, var(--accent) 0%, #0d2b26 100%);
+            color: white;
+            padding: 4rem 0;
+            margin-bottom: -2rem;
+        }
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .avatar-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .avatar-container:hover {
+            transform: scale(1.05);
+        }
+        .avatar-large {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .avatar-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .avatar-container:hover .avatar-overlay {
+            opacity: 1;
+        }
+        .hero-text h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: white !important; /* Force white on hero background */
+        }
+        .member-since {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--static11);
+        }
+        .stat-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            background: var(--secondary30);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+        .stat-value {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text);
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Layout Grid */
+        .account-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        /* Settings Cards */
+        .settings-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid var(--static11);
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .card-header h3 { margin: 0; }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .char-count {
+            font-weight: normal;
+            color: #999;
+        }
+        .input-wrapper {
+            position: relative;
+        }
+        .input-wrapper input, 
+        .input-wrapper textarea, 
+        .input-wrapper select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        .input-wrapper input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        .input-wrapper i {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent);
+            cursor: pointer;
+            opacity: 0.5;
+        }
+        .input-wrapper i:hover { opacity: 1; }
+
+        /* Sidebar Helpers */
+        .connection-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+        .connection-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .spotify-icon {
+            color: #1DB954;
+            font-size: 2rem;
+        }
+        .status-connected {
+            color: #1DB954;
+            font-size: 0.8rem;
+            margin: 0;
+            font-weight: bold;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+        }
+
+        /* Utilities */
+        .loading-shimmer {
+            color: transparent;
+            background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 4px;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .btn-text {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .mt-3 { margin-top: 1rem; }
+        .mb-5 { margin-bottom: 3rem; }
+
+        @media (max-width: 992px) {
+            .account-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+
+    <script is:inline>
+        document.addEventListener('DOMContentLoaded', async () => {
+            if (typeof supabaseClient !== 'undefined') {
+                const { data: { user } } = await supabaseClient.auth.getUser();
+                if (user) {
+                    const emailEl = document.getElementById('emailPlaceholder');
+                    const nameEl = document.getElementById('displayName');
+                    const avatarEl = document.getElementById('avatar');
+
+                    if (emailEl) emailEl.textContent = user.email;
+                    if (nameEl) {
+                        nameEl.textContent = user.user_metadata.full_name || 'Music Fan';
+                        nameEl.classList.remove('loading-shimmer');
+                    }
+                    if (avatarEl && user.user_metadata.avatar_url) {
+                        avatarEl.src = user.user_metadata.avatar_url;
+                    }
+
+                    // Fetch stats
+                    const { count: playlistCount } = await supabaseClient
+                        .from('playlists')
+                        .select('*', { count: 'exact', head: true })
+                        .eq('user_id', user.id);
+                    
+                    const plEl = document.getElementById('number_playlists');
+                    if (plEl) plEl.textContent = playlistCount || 0;
+                }
+            }
+        });
+    </script>
+</MainLayout>
